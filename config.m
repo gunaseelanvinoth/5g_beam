@@ -27,6 +27,7 @@ function cfg = config()
     cfg.failure_threshold = 60; % Increased threshold so failures actually trigger
     
     % Execution Controls
-    cfg.seed = 42; 
+    % Random seed based on current time — every run gives DIFFERENT results
+    cfg.seed = mod(sum(clock() * 1000), 2^31); 
     cfg.recovery_mode = 'both'; % 'conventional', 'proactive', 'both'
 end
