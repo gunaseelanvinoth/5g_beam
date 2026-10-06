@@ -17,5 +17,5 @@ catch
     mdl = trainModel(dataset);
 end
 
-disp('Launching Live Dashboard. Close the window to stop.');
-launchLiveDashboard(mdl);
+disp('Launching Full Live Dashboard. Close the window to stop.');
+launchFullLiveDashboard(mdl, cfg);
