@@ -51,8 +51,9 @@ fprintf('Saved performance comparison, network map, and ML confusion matrix figu
 generateProjectReport(simData, conv_log, pro_log);
 generateArchitectureDiagram();
 
-% Launch Dashboard
-launchDashboard(simData, conv_log, pro_log, cfg);
-fprintf('Dashboard launched.\n');
+% Launch LIVE Dashboard (all charts update in real-time)
+fprintf('Opening Full Live Dashboard...\n');
+launchFullLiveDashboard(mdl, cfg);
+fprintf('Live Dashboard launched.\n');
 
 fprintf('\n=== Project Execution Complete ===\n');
