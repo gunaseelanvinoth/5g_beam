@@ -242,7 +242,7 @@ function launchFullLiveDashboard(mdl, cfg)
         % Chart 4 – Confusion matrix
         cm=[TN FN; FP TP];
         set(h_cm,'CData',cm);
-        clim(ax4,[0 max(max(cm),1)]);
+        clim(ax4,[0 max(max(cm(:)),1)]);
         vals={TN,FN;FP,TP};
         for r=1:2; for c=1:2
             txt_cm(r,c).String=num2str(vals{r,c});
