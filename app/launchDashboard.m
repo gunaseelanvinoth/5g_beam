@@ -4,8 +4,9 @@
 function launchDashboard(simData, conv_log, pro_log, cfg)
 
     % ─── Main Window ──────────────────────────────────────────────────
-    f = uifigure('Name', '5G Beam Failure Prediction Dashboard', ...
-        'Position', [50 30 1300 850], 'Color', [0.12 0.14 0.18]);
+    f_main = uifigure('Name', '5G Beam Failure Prediction Dashboard', ...
+        'Position', [50 30 1200 700], 'Color', [0.12 0.14 0.18]);
+    f = uipanel(f_main, 'Position', [0 0 1200 700], 'Scrollable', 'on', 'BackgroundColor', [0.12 0.14 0.18], 'BorderType', 'none');
 
     % ─── Title Bar ────────────────────────────────────────────────────
     uilabel(f, 'Position', [20 800 900 40], ...
