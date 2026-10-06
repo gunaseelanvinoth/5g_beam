@@ -225,7 +225,7 @@ function launchFullLiveDashboard(mdl, cfg)
         % Chart 1 – SNR line & prob line
         set(h_snr, 'XData',t_buf,'YData',snr_buf);
         set(h_prob,'XData',t_buf,'YData',prob_buf*100);
-        xlim(ax1,[t_buf(1) max(t_buf(end),t_buf(1)+1)]);
+        xlim(ax1,[t_buf(end)-15 t_buf(end)]); % SLIDING WINDOW FOR CONTINUOUS FLOW
 
         % Chart 2 – Outage bar
         h_bar.YData=[conv_out ml_out];
@@ -237,7 +237,7 @@ function launchFullLiveDashboard(mdl, cfg)
 
         % Chart 3 – Blockage
         set(h_blk,'XData',t_buf,'YData',blk_buf);
-        xlim(ax3,[t_buf(1) max(t_buf(end),t_buf(1)+1)]);
+        xlim(ax3,[t_buf(end)-15 t_buf(end)]); % SLIDING WINDOW
 
         % Chart 4 – Confusion matrix
         cm=[TN FN; FP TP];
@@ -252,13 +252,13 @@ function launchFullLiveDashboard(mdl, cfg)
         ci=find(swc_buf==1); pi=find(swp_buf==1);
         if ~isempty(ci), set(h_sw_c,'XData',t_buf(ci),'YData',ones(1,numel(ci))); end
         if ~isempty(pi), set(h_sw_p,'XData',t_buf(pi),'YData',0.7*ones(1,numel(pi))); end
-        xlim(ax5,[t_buf(1) max(t_buf(end),t_buf(1)+1)]);
+        xlim(ax5,[t_buf(end)-15 t_buf(end)]); % SLIDING WINDOW
 
         % Chart 6 – Distance
         fi=find(fail_buf==1);
         set(h_dist,'XData',t_buf,'YData',dist_buf);
         if ~isempty(fi), set(h_fail_sc,'XData',t_buf(fi),'YData',dist_buf(fi)); end
-        xlim(ax6,[t_buf(1) max(t_buf(end),t_buf(1)+1)]);
+        xlim(ax6,[t_buf(end)-15 t_buf(end)]); % SLIDING WINDOW
 
         % 10. Update KPI cards
         kSNR.Text  = sprintf('%.1f',live_snr);

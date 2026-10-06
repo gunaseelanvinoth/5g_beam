@@ -2,24 +2,26 @@
 % Central configuration for the 5G Beam Failure Project.
 
 function cfg = config()
+    rng('shuffle'); % Ensure absolute randomness every time config is called
+
     % Simulation Parameters
     cfg.fc = 28e9; % Carrier frequency (28 GHz mmWave)
     cfg.bandwidth = 100e6; % 100 MHz bandwidth
     cfg.num_beams = 5; 
     cfg.beam_angles = [-30, -15, 0, 15, 30]; % Angles in degrees
     
-    cfg.tx_power = 0; % Reduced tx power to make environment more realistic for failures
+    cfg.tx_power = 0; 
     cfg.noise_power = -90; % dBm
     
-    % Mobility Parameters
-    cfg.ue_speed = 10; % m/s (faster to cause beam misalignment quicker)
-    cfg.ue_start_pos = [10, 50]; % (x,y) in meters
+    % Mobility Parameters - randomized so every run's charts are completely different!
+    cfg.ue_speed = randi([5, 18]); 
+    cfg.ue_start_pos = [randi([-30, 30]), randi([20, 60])]; 
     cfg.sim_duration = 100; % seconds
     cfg.dt = 0.1; % sampling interval
     
-    % Environment / Blockage
-    cfg.blockage_prob = 0.15; % Increased probability of blockage
-    cfg.blockage_attenuation = 40; % Higher attenuation when blocked (e.g., building)
+    % Environment / Blockage - randomized severity
+    cfg.blockage_prob = 0.08 + rand() * 0.15; 
+    cfg.blockage_attenuation = randi([30, 50]); 
     
     % ML / Prediction Parameters
     cfg.prediction_horizon = 2; % seconds
